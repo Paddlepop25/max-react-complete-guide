@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Expenses from './components/Expenses/Expenses'
 import NewExpense from './components/NewExpense/NewExpense'
 
+// till video 72
+
 const INITIAL_EXPENSES = [
   {
     id: 'e1',
