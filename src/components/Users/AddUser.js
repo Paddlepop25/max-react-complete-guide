@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Card from '../UI/Card';
-import classes from './AddUser.module.css';
 import Button from '../UI/Button';
+import classes from './AddUser.module.css';
 
-const AddUser = () => {
+const AddUser = (props) => {
   const [userName, setUserName] = useState('');
   const [age, setAge] = useState('');
 
@@ -21,16 +21,14 @@ const AddUser = () => {
 
   const onButtonClickHandler = (event) => {
     event.preventDefault();
-
     if (userName.trim().length === 0 || age.trim().length === 0) {
       return;
     }
-
     // add '+' infront to force it to be a number
     if (+age < 1) {
       return;
     }
-
+    props.addUser(userName, age);
     setUserName('');
     setAge('');
   };
