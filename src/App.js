@@ -10,7 +10,7 @@ function App() {
       return [
         ...prevState,
         {
-          id: Math.floor(Math.random() * 10) + 1,
+          id: Math.floor(Math.random() * 50) + 1,
           userName: uName,
           age: uAge,
         },
