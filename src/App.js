@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
 import MoviesList from './components/MoviesList';
+import AddMovie from './components/AddMovie';
 import './App.css';
 
 function App() {
@@ -8,21 +9,19 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // when using .then(), use .catch() at end for errors
-  // when using async await, use try catch
   const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch('https://swapi.dev/api/films/');
-
-      // using axios would throw error, but we use fetch so have to make error msg ourselves
-      // can also check for status code
+      const response = await fetch(
+        'https://max-udemy-http-b52eb-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json'
+      );
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }
 
       const data = await response.json();
+
       const transformedMovies = data.results.map((movieData) => {
         return {
           id: movieData.episode_id,
@@ -40,24 +39,31 @@ function App() {
 
   useEffect(() => {
     fetchMoviesHandler();
-  }, []);
+  }, [fetchMoviesHandler]);
 
-  let content = <p>No movies 🎥 found</p>;
+  function addMovieHandler(movie) {
+    console.log(movie);
+  }
+
+  let content = <p>Found no movies.</p>;
 
   if (movies.length > 0) {
     content = <MoviesList movies={movies} />;
   }
 
   if (error) {
-    content = <code>{error}</code>;
+    content = <p>{error}</p>;
   }
 
   if (isLoading) {
-    content = <code>Loading results...</code>;
+    content = <p>Loading...</p>;
   }
 
   return (
     <React.Fragment>
+      <section>
+        <AddMovie onAddMovie={addMovieHandler} />
+      </section>
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
