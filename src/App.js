@@ -14,7 +14,7 @@ function App() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch('ttps://swapi.dev/api/films/');
+      const response = await fetch('https://swapi.dev/api/films/');
 
       // using axios would throw error, but we use fetch so have to make error msg ourselves
       // can also check for status code
