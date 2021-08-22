@@ -1,17 +1,11 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
+import useCounter from '../hooks/use-counter';
 
 import Card from './Card';
 
 const ForwardCounter = () => {
-  const [counter, setCounter] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCounter((prevCounter) => prevCounter + 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
+  // only logic will be shared from custom hooks, not state
+  const counter = useCounter(); // will have value of the returned 'counter' from useCounter hook
 
   return <Card>{counter}</Card>;
 };
