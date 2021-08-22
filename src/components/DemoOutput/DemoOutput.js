@@ -6,4 +6,5 @@ const DemoOutput = (props) => {
   return <MyParagraph>{props.show ? 'Show me' : ''}</MyParagraph>;
 };
 
-export default DemoOutput;
+export default React.memo(DemoOutput);
+// React.memo check if props changed. No change, no re-evaluate this component and its child componenet
