@@ -6,7 +6,7 @@ const useInput = (validateValue) => {
   const [isTouched, setIsTouched] = useState(false);
 
   const valueIsValid = validateValue(enteredValue);
-  const hasError = !valueIsValid && !isTouched;
+  const hasError = !valueIsValid && isTouched;
 
   const valueChangeHandler = (event) => {
     setEnteredValue(event.target.value);
@@ -16,12 +16,19 @@ const useInput = (validateValue) => {
     setIsTouched(true);
   };
 
+  const reset = () => {
+    setEnteredValue('');
+    setIsTouched(false);
+  };
+
   // we return these so the below can be called from components that use this custom hook
   return {
     value: enteredValue,
+    isValid: valueIsValid,
     hasError,
     valueChangeHandler,
     inputBlurHandler,
+    reset,
   };
 };
 
