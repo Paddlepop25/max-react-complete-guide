@@ -13,7 +13,7 @@ const AvailableMeals = () => {
   useEffect(() => {
     const fetchMeals = async () => {
       const response = await fetch(
-        'https://max-udemy-http-b52eb-default-rtdb.asia-southeast1.firebasedatabase.app/meals.jsodn'
+        'https://max-udemy-http-b52eb-default-rtdb.asia-southeast1.firebasedatabase.app/meals.json'
       );
 
       if (!response.ok) {
