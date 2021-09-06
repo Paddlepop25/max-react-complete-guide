@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import Card from '../UI/Card';
 import MealItem from './MealItem/MealItem';
 import classes from './AvailableMeals.module.css';
@@ -17,13 +18,14 @@ const AvailableMeals = () => {
       );
 
       if (!response.ok) {
-        throw new Error('Something went wrong');
+        throw new Error('Something went wrong!');
       }
 
       const responseData = await response.json(); // await returns a promise
       // console.log(responseData);
 
       const loadedMeals = [];
+
       for (const key in responseData) {
         loadedMeals.push({
           id: key,
@@ -55,11 +57,12 @@ const AvailableMeals = () => {
 
   if (httpError) {
     return (
-      <section className={classes.mealError}>
+      <section className={classes.mealsError}>
         <p>{httpError}</p>
       </section>
     );
   }
+
   const mealsList = meals.map((meal) => (
     <MealItem
       key={meal.id}
