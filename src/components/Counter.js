@@ -1,36 +1,36 @@
-import { Component } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { counterActions } from '../store/index';
 import classes from './Counter.module.css';
-import { useSelector, useDispatch, connect } from 'react-redux';
 
 const Counter = () => {
-  const counter = useSelector((state) => state.counter);
-  const showCounter = useSelector((state) => state.showCounter);
-
   const dispatch = useDispatch();
+  const counter = useSelector((state) => state.counter);
+  const show = useSelector((state) => state.showCounter);
 
   const incrementHandler = () => {
-    dispatch({ type: 'increment' });
+    dispatch(counterActions.increment());
   };
 
   const increaseHandler = () => {
-    dispatch({ type: 'increase', payload: 5 });
+    dispatch(counterActions.increase(5)); // { type: SOME_UNIQUE_IDENTIFIER, payload: 10 }
   };
 
   const decrementHandler = () => {
-    dispatch({ type: 'decrement' });
+    dispatch(counterActions.decrement());
   };
 
   const toggleCounterHandler = () => {
-    dispatch({ type: 'toggle' });
+    dispatch(counterActions.toggleCounter());
   };
 
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      {showCounter && <div className={classes.value}>{counter}</div>}
+      {show && <div className={classes.value}>{counter}</div>}
       <div>
         <button onClick={incrementHandler}>Increment</button>
-        <button onClick={increaseHandler}>Increment by 5</button>
+        <button onClick={increaseHandler}>Increase by 5</button>
         <button onClick={decrementHandler}>Decrement</button>
       </div>
       <button onClick={toggleCounterHandler}>Toggle Counter</button>
@@ -66,28 +66,17 @@ export default Counter;
 //   }
 // }
 
-// // connect is higher order component
-// // execute the connect function, it returns a new function, we execute this returned function
-// // to this returned function we pass counter
-
-// const mapStateToProps = (state) => {
-//   // returns keys that's available as props
-//   // values from the keys can be used for drilling into the redux state
-//   // counter is key, we bind the state.counter to the counter prop
-//   // similar to const counter = useSelector((state) => state.counter);
+// const mapStateToProps = state => {
 //   return {
-//     counter: state.counter,
+//     counter: state.counter
 //   };
-// };
+// }
 
-// // equivalent to useDispatch
-// const mapDispatchToProps = (dispatch) => {
-//   //return keys are prop names to be used in component
+// const mapDispatchToProps = dispatch => {
 //   return {
 //     increment: () => dispatch({ type: 'increment' }),
 //     decrement: () => dispatch({ type: 'decrement' }),
-//   };
+//   }
 // };
 
-// // when using connect, redux will setup subscription for us
 // export default connect(mapStateToProps, mapDispatchToProps)(Counter);
