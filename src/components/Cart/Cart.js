@@ -29,7 +29,6 @@ const Cart = (props) => {
 
   const submitOrderHandler = async (userData) => {
     setIsSubmitting(true);
-
     // can do error handling too, he not doing to save time
     await fetch(
       'https://max-udemy-http-b52eb-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json',
