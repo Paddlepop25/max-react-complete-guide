@@ -7,7 +7,7 @@ const ProductDetail = () => {
   // example /product-detail/:productId for http://localhost:3000/product-detail/vvv
   // key=productId, value=vvv
   // {productId: "vvv"}
-  console.warn(params);
+  console.log(params);
 
   return (
     <section>
