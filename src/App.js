@@ -17,6 +17,7 @@ function App() {
 
   // this will dispatch when application starts
   useEffect(() => {
+    
     dispatch(fetchCartData());
   }, [dispatch]);
 
@@ -35,7 +36,10 @@ function App() {
       return;
     }
 
-    dispatch(sendCartData(cart));
+    // send cart data only if cart has changed locally (add or remove item)
+    if (cart.cartIsChanged) {
+      dispatch(sendCartData(cart));
+    }
   }, [cart, dispatch]);
 
   return (

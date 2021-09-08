@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialCartState = {
   items: [],
   totalQuantity: 0,
+  cartIsChanged: false,
 };
 
 /* in normal redux never manipulate state directly
@@ -24,6 +25,7 @@ const cartSlice = createSlice({
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
       state.totalQuantity++;
+      state.cartIsChanged = true;
 
       if (!existingItem) {
         state.items.push({
@@ -42,6 +44,7 @@ const cartSlice = createSlice({
       const id = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
       state.totalQuantity--;
+      state.cartIsChanged = true;
 
       if (existingItem.quantity === 1) {
         state.items = state.items.filter((item) => item.id !== id);

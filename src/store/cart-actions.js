@@ -21,8 +21,13 @@ export const fetchCartData = () => {
 
     try {
       const cartData = await fetchData();
-      // console.log(cartData);
-      dispatch(cartActions.replaceCart(cartData));
+      console.log(cartData);
+      dispatch(
+        cartActions.replaceCart({
+          items: cartData.items || [],
+          totalQuantity: cartData.totalQuantity,
+        })
+      );
     } catch (error) {
       dispatch(
         uiActions.showNotification({
@@ -53,7 +58,12 @@ export const sendCartData = (cart) => {
         'https://max-udemy-http-b52eb-default-rtdb.asia-southeast1.firebasedatabase.app/cart.json',
         {
           method: 'PUT',
-          body: JSON.stringify(cart),
+          // body: JSON.stringify(cart), //rewrite cart obj to send to firebase because don't want to send cartIsChanged
+          body: JSON.stringify({
+            items: cart.items,
+            totalQuantity: cart.totalQuantity,
+            // this new object to send to firebase don't contain cartIsChanged
+          }),
         }
       );
 
