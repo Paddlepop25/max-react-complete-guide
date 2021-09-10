@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Route, Link } from 'react-router-dom';
+import { useParams, Route, Link, useRouteMatch } from 'react-router-dom';
 import Comments from '../components/comments/Comments';
 import HighlightedQuote from '../components/quotes/HighlightedQuote';
 
@@ -10,6 +10,12 @@ const DUMMY_QUOTES = [
 ];
 
 const QuoteDetail = () => {
+  const routeMatch = useRouteMatch();
+  // console.log(routeMatch);
+  /**
+    path: "/quotes/:quoteId"
+    url: "/quotes/q3
+ */
   const params = useParams();
   // console.log(params); //{quoteId: 'the quote id'}
 
@@ -22,14 +28,14 @@ const QuoteDetail = () => {
   return (
     <React.Fragment>
       <HighlightedQuote text={quote.text} author={quote.author} />
-      <Route path={`/quotes/${params.quoteId}`} exact>
+      <Route path={`${routeMatch.path}`} exact>
         <div className='centered'>
-          <Link className='btn--flat' to={`/quotes/${params.quoteId}/comments`}>
+          <Link className='btn--flat' to={`${routeMatch.url}/comments`}>
             Load comments
           </Link>
         </div>
       </Route>
-      <Route path={`/quotes/${params.quoteId}/comments`}>
+      <Route path={`${routeMatch.path}/comments`}>
         <Comments />
       </Route>
     </React.Fragment>
@@ -37,3 +43,5 @@ const QuoteDetail = () => {
 };
 
 export default QuoteDetail;
+
+// /${match.path} == /quotes/${params.quoteId}

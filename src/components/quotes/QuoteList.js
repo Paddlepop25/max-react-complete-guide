@@ -16,7 +16,7 @@ const sortQuotes = (quotes, ascending) => {
 const QuoteList = (props) => {
   const history = useHistory();
   const location = useLocation();
-  // console.log(location);
+  // console.log(location); //pathname: "/quotes"
 
   // extract data from query params in URL. Have key + value of search
   const queryParams = new URLSearchParams(location.search);
@@ -25,7 +25,15 @@ const QuoteList = (props) => {
   const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
   const changeSortingHandler = () => {
-    history.push('/quotes?sort=' + (isSortingAscending ? 'desc' : 'asc'));
+    history.push({
+      pathname: location.pathname, // path you want to navigate to
+      search: `?sort=${isSortingAscending ? 'desc' : 'asc'}`, // for query parameters
+    });
+
+    // the alternative to above
+    // history.push(
+    //   `${location.pathname}?sort=${isSortingAscending ? 'desc' : 'asc'}`
+    // );
   };
 
   return (
