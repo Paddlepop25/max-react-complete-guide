@@ -57,7 +57,7 @@ export async function getStaticProps() {
         address: meetup.address,
       })),
     },
-    revalidate: 10, // regenerates every specified second on server to see if got new data
+    revalidate: 1, // regenerates every specified second on server to see if got new data
   };
 }
 
