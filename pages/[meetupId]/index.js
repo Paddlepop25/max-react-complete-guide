@@ -27,7 +27,7 @@ function MeetupId(props) {
 /**
  * getStaticPaths, getServerSideProps, getStaticProps allow us to
  * fetch data to pre-render our pages with the data (props)
- * for better SEO
+ * for better SEO.
  */
 
 // MUST EXPORT THIS if using getStaticProps, if not will get error
