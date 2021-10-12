@@ -31,3 +31,10 @@ let people: {
   name: string;
   age: number;
 }[];
+
+// Type inference
+/**
+ * there is error on course = 123 because typescript will try to infer that the type is string as it's initialized above
+ */
+let course = 'React - The Complete Guide';
+// course = 123; // error
