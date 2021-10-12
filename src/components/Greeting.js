@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Output from './Output';
 
 const Greeting = () => {
   const [changeText, setChangedText] = useState(false);
@@ -10,8 +11,8 @@ const Greeting = () => {
   return (
     <>
       <h1>Hello 🌏 World!!!!!</h1>
-      {!changeText && <code>It's good to see ya!</code>}
-      {changeText && <code>Changed!</code>}
+      {!changeText && <Output>It's good to see ya!</Output>}
+      {changeText && <Output>Changed!</Output>}
       <br />
       <br />
       <button
