@@ -13,17 +13,19 @@ import Greeting from './Greeting';
 // GET - will throw error if element not found
 // QUERY - will NOT throw error if element not found
 
-test('renders Hello World as a text', () => {
-  // Arrange
-  render(<Greeting />);
-  screen.debug();
+describe('Greeting component test suite', () => {
+  test('renders Hello World as a text', () => {
+    // Arrange
+    render(<Greeting />);
+    // screen.debug();
 
-  // Act
-  // ... nothing for this component
+    // Act
+    // ... nothing for this component
 
-  // Assert (note the exact: false can be flexible when looking for Hello World)
-  const helloWorldElement = screen.getByText('Hello World', {
-    exact: false,
+    // Assert (note the exact: false can be flexible when looking for Hello World)
+    const helloWorldElement = screen.getByText('Hello 🌏 World', {
+      exact: false,
+    });
+    expect(helloWorldElement).toBeInTheDocument();
   });
-  expect(helloWorldElement).toBeInTheDocument();
 });
