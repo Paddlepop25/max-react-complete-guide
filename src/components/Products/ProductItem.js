@@ -3,11 +3,11 @@ import Card from '../UI/Card';
 import './ProductItem.css';
 import { useCustomStore } from '../../hooks-store/custom-store';
 
-const ProductItem = (props) => {
-  const dispatch = useCustomStore()[1];
+const ProductItem = React.memo((props) => {
+  const dispatch = useCustomStore(false)[1];
+  console.log('rendering ', props.id);
 
   const toggleFavHandler = () => {
-    console.log(props.id);
     dispatch('TOGGLE_FAV', props.id);
   };
 
@@ -25,6 +25,6 @@ const ProductItem = (props) => {
       </div>
     </Card>
   );
-};
+});
 
 export default ProductItem;
