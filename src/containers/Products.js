@@ -1,15 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import ProductItem from '../components/Products/ProductItem';
 import './Products.css';
-import { ProductsContext } from '../context/products-context';
+import { useCustomStore } from '../hooks-store/custom-store';
 
 const Products = (props) => {
-  const productList = useContext(ProductsContext).products;
+  // const [globalState, dispatch] = useCustomStore(); legit, but we not interested in dispatch
+  const globalState = useCustomStore()[0];
 
   return (
     <ul className='products-list'>
-      {productList.map((prod) => (
+      {globalState.products.map((prod) => (
         <ProductItem
           key={prod.id}
           id={prod.id}
