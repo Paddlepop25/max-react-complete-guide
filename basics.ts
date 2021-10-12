@@ -78,3 +78,19 @@ function multiply(a: number, b: number): number {
 function printOutput(value: any): void {
   console.log(value);
 }
+
+// Generics
+// when use <T> typescript will not use 'any' but infer the type of the return correctly.
+// so it will lock in the type (string or number etc) for that function
+function insertAtBeginning<T>(array: T[], value: T) {
+  const newArray = [value, ...array];
+  return newArray;
+}
+
+const demoNumberArray = [5, 9, 7];
+const updatedNumberArray = insertAtBeginning(demoNumberArray, 0); // will return [0, 5, 9, 7]
+// updatedNumberArray[0].split('') // error because after using <T> generics, typescript know its array of numbers, not strings
+
+const demoStringArray = ['aku', 'tak', 'tahu'];
+const updatedStringArray = insertAtBeginning(demoStringArray, 'alamak');
+updatedStringArray[0].split(''); // NO error because after using <T> generics, typescript know its array of strings
