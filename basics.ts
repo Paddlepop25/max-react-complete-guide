@@ -67,3 +67,14 @@ noodles = [
     isThick: false,
   },
 ];
+
+// Functions & types
+function multiply(a: number, b: number): number {
+  return a * b;
+}
+
+// special return type: VOID is compared to null and undefined
+// VOID means the function never returns
+function printOutput(value: any): void {
+  console.log(value);
+}
