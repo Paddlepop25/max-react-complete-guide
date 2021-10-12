@@ -38,3 +38,8 @@ let people: {
  */
 let course = 'React - The Complete Guide';
 // course = 123; // error
+
+// Union Types
+let fruit: string | number = 55;
+fruit = 'durian'; // no error because can be string or number
+// fruit = true // error because boolean not stated as possible type of fruit
