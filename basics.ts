@@ -43,3 +43,27 @@ let course = 'React - The Complete Guide';
 let fruit: string | number = 55;
 fruit = 'durian'; // no error because can be string or number
 // fruit = true // error because boolean not stated as possible type of fruit
+
+// Type aliase
+type Noodle = {
+  name: string;
+  isThick: boolean;
+};
+
+let noodle: Noodle;
+noodle = {
+  name: 'bee hoon',
+  isThick: false,
+};
+
+let noodles: Noodle[];
+noodles = [
+  {
+    name: 'mee tai mak',
+    isThick: true,
+  },
+  {
+    name: 'linguini',
+    isThick: false,
+  },
+];
