@@ -20,10 +20,18 @@ function App() {
       return prevTodos.concat(newTodo);
     });
   };
+
+  const deleteTodoHandler = (todoId: string) => {
+    console.log('delete', todoId);
+    setTodos((prevTodos) => {
+      return prevTodos.filter((todo) => todo.id !== todoId);
+    });
+  };
+
   return (
     <div>
       <NewTodo onAddTodo={addTodoHandler} />
-      <Todos items={todos} />
+      <Todos items={todos} deleteTodo={deleteTodoHandler} />
     </div>
   );
 }
