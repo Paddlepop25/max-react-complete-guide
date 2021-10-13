@@ -1,6 +1,5 @@
 import React from 'react';
 import Todo from '../models/todo';
-import NewTodo from './NewTodo';
 import TodoList from './TodoList';
 
 // export interface Todo {
@@ -12,7 +11,6 @@ import TodoList from './TodoList';
 const Todos: React.FC<{ items: Todo[] }> = (props) => {
   return (
     <>
-      <NewTodo />
       <ul>
         {props.items.map((item) => (
           <TodoList key={item.id} text={item.text} />
