@@ -1,25 +1,24 @@
-import React from 'react';
-import Todo from '../models/todo';
+import React, { useContext } from 'react';
 import TodoList from './TodoList';
 import classes from './Todos.module.css';
+import { TodosContext } from '../store/todos-context';
 
 // export interface Todo {
 //   id: string;
 //   text: string;
 // }
 
-// see video 405 for lengthy explaination of generics in React Typescript
-const Todos: React.FC<{ items: Todo[]; deleteTodo: (id: string) => void }> = (
-  props
-) => {
+const Todos: React.FC = () => {
+  const todoContext = useContext(TodosContext);
+
   return (
     <>
       <ul className={classes.todos}>
-        {props.items.map((item) => (
+        {todoContext.items.map((item) => (
           <TodoList
             key={item.id}
             text={item.text}
-            onDeleteTodo={props.deleteTodo.bind(null, item.id)}
+            onDeleteTodo={todoContext.deleteTodo.bind(null, item.id)}
           />
         ))}
       </ul>
